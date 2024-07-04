@@ -1,24 +1,38 @@
-# README
+### Rails 5 on Docker for ARM (M1, M2, and M3) Architecture
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Usage
 
-Things you may want to cover:
+Clone the repository:
 
-* Ruby version
+```shell
+% git clone git@github.com:suzukimilanpaak/rails5-docker-macos.git
+% cd rails5-docker-macos
+```
 
-* System dependencies
+Build and run the containers:
 
-* Configuration
+```shell
+% docker compose up
+```
 
-* Database creation
+Attach your shell to the web service:
 
-* Database initialization
+```shell
+% docker exec --tty --interactive web bash
+```
 
-* How to run the test suite
+Run the migration. There is a predefined migration used to test the behaviour of the time column, which became zone-aware in Rails 5. More details can be found [here](https://liefery-it-legacy.github.io/blog/2017/10/25/times-in-rails-5.html).
 
-* Services (job queues, cache servers, search engines, etc.)
+```shell
+# bundle exec rake db:create db:migrate
+```
 
-* Deployment instructions
+[Optional] Open the following URL in a browser to see the default Rails welcome page:
 
-* ...
+http://localhost:4000/
+
+Explore the new behaviour of Rails 5:
+
+```shell
+# bundle exec rails console
+```

@@ -1,0 +1,13 @@
+default: &default
+  adapter: mysql2
+  host: db
+  username: root
+  password: admin
+
+development:
+  <<: *default
+  database: myapp_development
+
+test:
+  <<: *default
+  database: myapp_test

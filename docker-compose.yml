@@ -1,0 +1,19 @@
+services:
+  web:
+    build: .
+    container_name: web
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 4000 -b '0.0.0.0'"
+    volumes:
+      - .:/myapp
+    ports:
+      - "4000:4000"
+    env_file: ./.env
+  db:
+    image: mysql/mysql-server:5.7
+    container_name: db
+    platform: linux/x86_64
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_ROOT_HOST=% # Allow root user to connect from non-localhost addresses
+      - MYSQL_LOG_CONSOLE=true # Log to STDOUT instead of usual error file
